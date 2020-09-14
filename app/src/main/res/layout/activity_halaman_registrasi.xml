@@ -14,28 +14,27 @@
 
     <TextView
         android:id="@+id/shapeWhite"
-        android:layout_width="233dp"
-        android:layout_height="423dp"
+        android:layout_width="228dp"
+        android:layout_height="500dp"
         android:background="@drawable/white_rectangle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.372">
+        app:layout_constraintVertical_bias="0.454">
 
     </TextView>
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="165dp"
-        android:layout_height="27dp"
-        app:layout_constraintBottom_toBottomOf="@+id/shapeWhite"
+        android:id="@+id/imageView"
+        android:layout_width="246dp"
+        android:layout_height="65dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/shapeWhite"
-        app:layout_constraintVertical_bias="0.046"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/dway_text" />
 
     <TextView
         android:id="@+id/textView"
@@ -48,98 +47,130 @@
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Sign Up to continue to Admiria."
+        android:layout_marginTop="16dp"
+        android:text="Sign Up to continue to Dway."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
-
-    <EditText
-        android:id="@+id/editEmail"
-        android:layout_width="170dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="84dp"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
-        android:textSize="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/editLastName"
         android:layout_width="170dp"
         android:layout_height="35dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="96dp"
         android:ems="10"
         android:hint="Last Name"
         android:inputType="textPersonName"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/editFirstName"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:hint="Last Name"
+        android:inputType="textPersonName"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/editEmail"
         android:layout_width="170dp"
         android:layout_height="35dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="140dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/editPassword"
         android:layout_width="170dp"
         android:layout_height="35dp"
-        android:layout_marginTop="228dp"
+        android:layout_marginTop="184dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editRepeatPassword"
+        android:id="@+id/editAgencyName"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="228dp"
+        android:ems="10"
+        android:hint="Agency Name"
+        android:inputType="textPassword"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/editAgencyDetail"
         android:layout_width="170dp"
         android:layout_height="35dp"
         android:layout_marginTop="276dp"
         android:ems="10"
-        android:hint="Repeat Password"
+        android:hint="Agency Detail"
         android:inputType="textPassword"
         android:textSize="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/editContactNumber"
+        android:layout_width="170dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="324dp"
+        android:ems="10"
+        android:hint="Contact Number"
+        android:inputType="phone"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="191dp"
         android:layout_height="36dp"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="440dp"
         android:background="#0075f6"
         android:radius="20dp"
         android:text="Register"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textLogin"
@@ -149,10 +180,10 @@
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.455"
+        app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/shapeWhite"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintVertical_bias="0.102" />
 
     <TextView
         android:id="@+id/textLoginLink"
@@ -166,6 +197,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textLogin"
         app:layout_constraintTop_toBottomOf="@+id/shapeWhite"
-        app:layout_constraintVertical_bias="0.205" />
+        app:layout_constraintVertical_bias="0.102" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnLogin, btnSignUp;
     EditText editName, editEmail, editPassword;
-    TextView textRegisLink;
+    TextView textRegisLink, textRegis;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         editEmail     = findViewById(R.id.editEmail);
         editPassword  = findViewById(R.id.editPassword);
         textRegisLink = findViewById(R.id.textRegisLink);
+        textRegis     = findViewById(R.id.textRegis);
 
         //Menyimpan Value editEmail
         sharedPreferences = getSharedPreferences(emailShared,Context.MODE_PRIVATE);
@@ -77,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Untuk pindah halaman ke regis
         textRegisLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent halRegis = new Intent(MainActivity.this, HalamanRegistrasi.class);
+                startActivity(halRegis);
+            }
+        });
+        textRegis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent halRegis = new Intent(MainActivity.this, HalamanRegistrasi.class);

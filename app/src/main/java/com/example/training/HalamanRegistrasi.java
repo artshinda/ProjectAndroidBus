@@ -15,7 +15,7 @@ import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
 public class HalamanRegistrasi extends AppCompatActivity {
 
-    TextView shapeWhite, textLoginLink;
+    TextView shapeWhite, textLoginLink, textLogin;
     EditText editFirstName, editLastName, editEmail, editPassword, editRepeatPassword;
     Button btnRegister;
 
@@ -29,8 +29,9 @@ public class HalamanRegistrasi extends AppCompatActivity {
         editLastName        = findViewById(R.id.editLastName);
         editEmail           = findViewById(R.id.editEmail);
         editPassword        = findViewById(R.id.editPassword);
-        editRepeatPassword  = findViewById(R.id.editRepeatPassword);
+        editRepeatPassword  = findViewById(R.id.editAgencyName);
         btnRegister         = findViewById(R.id.btnRegister);
+        textLogin           = findViewById(R.id.textLogin);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,14 @@ public class HalamanRegistrasi extends AppCompatActivity {
         });
 
         textLoginLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent halLogin = new Intent(HalamanRegistrasi.this, MainActivity.class);
+                startActivity(halLogin);
+            }
+        });
+
+        textLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent halLogin = new Intent(HalamanRegistrasi.this, MainActivity.class);
