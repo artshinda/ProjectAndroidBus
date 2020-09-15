@@ -2,6 +2,7 @@ package com.example.training;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,15 +16,30 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.training.service.AuthService;
+import com.example.training.service.UtilsApi;
+import com.example.training.util.SessionManager;
+
 import net.yslibrary.android.keyboardvisibilityevent.util.UIUtil;
 
-public class MainActivity extends AppCompatActivity {
+import org.json.JSONObject;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class LoginActivity extends AppCompatActivity{
 
     Button btnLogin, btnSignUp;
     EditText editName, editEmail, editPassword;
     TextView textRegisLink, textRegis;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    AuthService mAuthAPIService;
+    SessionManager sessionManager;
+    Context mContext;
+    ProgressDialog loading;
 
     public static String email;
     public static String password;
@@ -35,13 +51,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
-        btnLogin      = findViewById(R.id.btnRegister);
-        editEmail     = findViewById(R.id.editEmail);
-        editPassword  = findViewById(R.id.editPassword);
-        textRegisLink = findViewById(R.id.textRegisLink);
-        textRegis     = findViewById(R.id.textRegis);
+        btnLogin       = findViewById(R.id.btnRegister);
+        editEmail      = findViewById(R.id.editEmail);
+        editPassword   = findViewById(R.id.editPassword);
+        textRegisLink  = findViewById(R.id.textRegisLink);
+        textRegis      = findViewById(R.id.textRegis);
+        sessionManager = new SessionManager(this);
+        mContext       = this;
 
         //Menyimpan Value editEmail
         sharedPreferences = getSharedPreferences(emailShared,Context.MODE_PRIVATE);
@@ -52,10 +70,11 @@ public class MainActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this, editEmail.getText(), Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, editPassword.getText(), Toast.LENGTH_SHORT).show();
+                loading = ProgressDialog.show(mContext, null, "Harap Menunggu",
+                        true, false);
+                doLogin();
 
-                UIUtil.hideKeyboard(MainActivity.this);
+                UIUtil.hideKeyboard(LoginActivity.this);
             }
         });
 
@@ -64,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                View focusedView = MainActivity.this.getCurrentFocus();
+                View focusedView = LoginActivity.this.getCurrentFocus();
 
                 if (focusedView != null) {
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
@@ -78,14 +97,16 @@ public class MainActivity extends AppCompatActivity {
         textRegisLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent halRegis = new Intent(MainActivity.this, HalamanRegistrasi.class);
+                Intent halRegis = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(halRegis);
             }
         });
+
+        // Untuk pindah halaman ke regis
         textRegis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent halRegis = new Intent(MainActivity.this, HalamanRegistrasi.class);
+                Intent halRegis = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(halRegis);
             }
         });
@@ -133,19 +154,36 @@ public class MainActivity extends AppCompatActivity {
         Log.d("lifecycle", "onStop Invoked");
     }
 
-//    private void closeKeyboard(){
-//        View view = this.getCurrentFocus();
-//        if (view != null) {
-//            InputMethodManager close = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//            close.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//        }
-//    }
+    public void doLogin(){
+        mAuthAPIService = UtilsApi.getAuthService();
+        mAuthAPIService.postLogin(editEmail.getText().toString(), editPassword.getText().toString())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful()){
+                            loading.dismiss();
+                            try {
+                                JSONObject jsonObject = new JSONObject(response.body().string());
+                                sessionManager.setSession(jsonObject.getString("data"));
+                                // Jika login berhasil maka data nama yang ada di response API
+                                // akan diparsing ke activity selanjutnya.
+                                Toast.makeText(mContext, "BERHASIL LOGIN", Toast.LENGTH_LONG).show();
+                                Intent Home=new Intent(LoginActivity.this, HomeActivity.class);
+                                startActivity(Home);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            loading.dismiss();
+                        }
+                    }
 
-//    public static void hideSoftKeyboard(MainActivity activity) {
-//        InputMethodManager inputMethodManager =
-//                (InputMethodManager) activity.getSystemService(
-//                        MainActivity.INPUT_METHOD_SERVICE);
-//        inputMethodManager.hideSoftInputFromWindow(
-//                activity.getCurrentFocus().getWindowToken(), 0);
-//    }
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.e("debug", "onFailure: ERROR > " + t.toString());
+                        Toast.makeText(mContext,t.getMessage(), Toast.LENGTH_SHORT).show();
+                        loading.dismiss();
+                    }
+                });
+    }
 }
