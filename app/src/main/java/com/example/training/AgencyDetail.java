@@ -12,34 +12,37 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.training.entity.Agency;
-import com.example.training.service.Profile;
 import com.example.training.service.UtilsApi;
 import com.example.training.service.getAgency;
 import com.example.training.util.SessionManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AgencyDetail extends AppCompatActivity {
-    EditText agName;
-    EditText agDetails;
     getAgency mApiService;
     Context mContext;
-    //    EditText edText;
+    EditText edText;
+    EditText edText2;
     SessionManager session;
     Button profile;
     Button bus;
+    com.example.training.entity.Agency agency=new com.example.training.entity.Agency();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agency_detail);
-        agName = findViewById(R.id.agName);
-        agDetails = findViewById(R.id.agDetails);
         session=new SessionManager(this);
         mContext = this;
-        mApiService = UtilsApi.getAgencyService();
+        edText=findViewById(R.id.editText);
+        edText2=findViewById(R.id.editText2);
         profile=findViewById(R.id.profile);
+        bus=findViewById(R.id.bus);
+        mApiService = UtilsApi.getAgencyService();
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,15 +72,15 @@ public class AgencyDetail extends AppCompatActivity {
     }
 
     private void getDetailAgency(){
-        String agencyId = session.getByKey("agencyId");
+        String agencyId=session.getAgencyId();
 
         mApiService.getAgency(agencyId).enqueue(new Callback<Agency>() {
             @Override
             public void onResponse(Call<Agency> agCall, Response<Agency> agResponse) {
                 if (agResponse.isSuccessful()){
-//                    Log.d("agencyId",agResponse.body().getDetails());
-                    agName.setText(agResponse.body().getName());
-                    agDetails.setText(agResponse.body().getDetails());
+                    Log.d("agencyId",agResponse.body().getDetails());
+                    edText.setText(agResponse.body().getDetails());
+                    edText2.setText(agResponse.body().getName());
                 } else {
                     Toast.makeText(mContext, "Gagal mengambil data detail", Toast.LENGTH_SHORT).show();
                 }

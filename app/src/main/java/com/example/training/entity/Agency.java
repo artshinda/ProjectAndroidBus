@@ -1,5 +1,7 @@
 package com.example.training.entity;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
@@ -14,8 +16,8 @@ public class Agency {
     private String name;
     private String owner;
     private String user_id;
-    private Date createdDate;
-    private Date updatedDate;
+    private Long created_date;
+    private Long updated_date;
     public String getId() {
         return id;
     }
@@ -64,19 +66,19 @@ public class Agency {
         this.user_id = user_id;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Long getCreated_date() {
+        return created_date;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCreated_date(Long created_date) {
+        this.created_date = created_date;
     }
 
-    public Date getUpdatedDate() {
-        return updatedDate;
+    public Long getUpdated_date() {
+        return updated_date;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setUpdated_date(Long updated_date) {
+        this.updated_date = updated_date;
     }
 }

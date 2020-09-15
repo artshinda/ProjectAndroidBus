@@ -10,5 +10,6 @@ import retrofit2.http.Query;
 public interface Profile {
 
     @GET("getUserId")
-    Call<User> getProfile(@Query("id") String agencyId);
+    Call<User> getUser(@Query("id") String userId);
+
 }

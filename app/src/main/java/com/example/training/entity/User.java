@@ -3,10 +3,7 @@ package com.example.training.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class User {
-    @SerializedName("email")
     private String email;
     private String password;
     @SerializedName("id")
@@ -14,25 +11,6 @@ public class User {
     private String mobileNumber;
     private String firstName;
     private String lastName;
-
-    private Date createdDate;
-    private Date updatedDate;
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
 
     public String getEmail() {
         return email;

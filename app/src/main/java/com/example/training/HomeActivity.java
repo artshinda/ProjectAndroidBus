@@ -11,8 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.training.entity.User;
-import com.example.training.service.AuthService;
+import com.example.training.entity.Agency;
 import com.example.training.service.Profile;
 import com.example.training.service.UtilsApi;
 import com.example.training.util.SessionManager;
@@ -22,29 +21,31 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
+    Button agency;
+    Button bus;
+    Profile mApiService;
+    Context mContext;
+    //    List<Bus> semuadosenItemList = new ArrayList<>();
+    //        DosenAdapter dosenAdapter;
+    SessionManager session;
     EditText firstName;
     EditText lastName;
     EditText email;
     EditText mobileNumber;
-    EditText password;
-    Profile mApiService;
-    Context mContext;
-//    EditText edText;
-    SessionManager session;
-    Button agency;
-    Button bus;
+//    EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        firstName   = findViewById(R.id.firstName);
-        lastName   = findViewById(R.id.lastName);
-        password   = findViewById(R.id.password);
-        email   = findViewById(R.id.email);
-        mobileNumber   = findViewById(R.id.mobileNumber);
         session=new SessionManager(this);
         mContext = this;
         mApiService = UtilsApi.getProfileService();
+        firstName=findViewById(R.id.editText);
+        lastName=findViewById(R.id.editText2);
+        email=findViewById(R.id.editText3);
+        mobileNumber=findViewById(R.id.editText4);
+//        password=findViewById(R.id.editText5);
+        bus=findViewById(R.id.bus);
         agency=findViewById(R.id.agency);
         agency.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,46 +56,44 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
-
-        bus=findViewById(R.id.bus);
         bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent bus=new Intent(HomeActivity.this, BusActivity.class);
-                startActivity(bus);
+                Intent agency=new Intent(HomeActivity.this, BusActivity.class);
+                startActivity(agency);
 
             }
         });
+
     }
-
-
     @Override
     protected void onResume() {
-        getProfile();
+        getUser();
         super.onResume();
     }
 
-    private void getProfile() {
-        String userId = session.getByKey("userId");
+    private void getUser(){
+        String userId=session.getUserId();
 
-        mApiService.getProfile(userId).enqueue(new Callback<User>() {
+        mApiService.getUser(userId).enqueue(new Callback<com.example.training.entity.User>() {
             @Override
-            public void onResponse(Call<User> userCall, Response<User> userResponse) {
-                if (userResponse.isSuccessful()){
-//                    Log.d("agencyId",userResponse.body().getDetails());
-                    firstName.setText(userResponse.body().getFirstName());
-                    lastName.setText(userResponse.body().getLastName());
-                    email.setText(userResponse.body().getEmail());
-                    mobileNumber.setText(userResponse.body().getMobileNumber());
-                    password.setText(userResponse.body().getPassword());
+            public void onResponse(Call<com.example.training.entity.User> agCall, Response<com.example.training.entity.User> agResponse) {
+                if (agResponse.isSuccessful()){
+                    Log.d("firstName",agResponse.body().getFirstName());
+                    firstName.setText(agResponse.body().getFirstName());
+                    lastName.setText(agResponse.body().getLastName());
+                    email.setText(agResponse.body().getEmail());
+                    mobileNumber.setText(agResponse.body().getMobileNumber());
+//                    password.setText(agResponse.body().getPassword());
+//                    edText2.setText(agResponse.body().getName());
                 } else {
                     Toast.makeText(mContext, "Gagal mengambil data detail", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<User> call, Throwable t) {
+            public void onFailure(Call<com.example.training.entity.User> call, Throwable t) {
                 Toast.makeText(mContext, "Koneksi internet bermasalah", Toast.LENGTH_SHORT).show();
             }
         });
