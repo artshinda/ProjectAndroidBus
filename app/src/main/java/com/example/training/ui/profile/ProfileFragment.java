@@ -52,41 +52,13 @@ EditText editFirstName;
         editEmail          = root.findViewById(R.id.editEmail);
             getUser();
 
-//        editFirstName.setText("lololo");
-//        profileViewModel.getUsername().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                editFirstName.setText(s);
-//            }
-//        });
-//
-//        profileViewModel.getContactNumber().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//                editLastName.setText(s);
-//            }
-//        });
-//
-//        profileViewModel.getMobileNumber().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//                editMobileNumber.setText(s);
-//            }
-//        });
-//
-//        profileViewModel.getEmail().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(String s) {
-//                editEmail.setText(s);
-//            }
-//        });
         return root;
     }
 
     private void getUser(){
 //harusnya yg ini
-//        String userId=session.getUserId();
-        String userId="824537d7-a1dd-4a4d-9d99-a3ed0a9103dd";
+        String userId=session.getUserId();
+//        String userId="824537d7-a1dd-4a4d-9d99-a3ed0a9103dd";
 
 //        editFirstName.setText("lololo");
         mApiService.getUser(userId).enqueue(new Callback<User>() {
