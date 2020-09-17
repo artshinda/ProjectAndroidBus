@@ -43,6 +43,14 @@ public class SessionManager {
         return token;
     }
 
+    public String getAgencyId() {
+        String agencyId = prefs.getString("agencyId", "");
+        return agencyId;
+    }
+    public String getUserId() {
+        String agencyId = prefs.getString("userId", "");
+        return agencyId;
+    }
     public void removeToken() {
         prefs.edit().remove("token").apply();
     }
