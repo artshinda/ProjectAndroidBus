@@ -67,14 +67,21 @@ public class LoginActivity extends AppCompatActivity{
         sharedPreferences = getSharedPreferences(passwordShared,Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        String email = editEmail.getText().toString().trim();
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         //Button click yang mengarah ke halaman registrasi
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loading = ProgressDialog.show(mContext, null, "Harap Menunggu",
                         true, false);
-                doLogin();
-
+//                if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    doLogin();
+//                }
+//                else{
+//                    Toast.makeText(mContext,"invalid email", Toast.LENGTH_SHORT).show();
+//                }
                 UIUtil.hideKeyboard(LoginActivity.this);
             }
         });
@@ -179,6 +186,7 @@ public class LoginActivity extends AppCompatActivity{
                                 Intent Home=new Intent(LoginActivity.this, HomeActivity.class);
                                 startActivity(Home);
                             } catch (Exception e) {
+                                Toast.makeText(mContext,"invalid email or password", Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                             }
                         } else {

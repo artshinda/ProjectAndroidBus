@@ -33,6 +33,7 @@ import retrofit2.Response;
 
 public class ProfileFragment extends Fragment {
 
+
     Profile mApiService;
     static Context mContext;
     SessionManager session;
@@ -105,4 +106,4 @@ EditText editFirstName;
         });
     }
 
-}
+    }
