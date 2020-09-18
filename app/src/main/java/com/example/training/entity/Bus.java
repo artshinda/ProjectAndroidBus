@@ -3,21 +3,29 @@ package com.example.training.entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
+import java.util.List;
 
 public class Bus {
 
     @SerializedName("id")
     private String id;
-    @SerializedName("code")
     private String code;
 
-    private String agencyId;
+    private String agency_id;
     private Integer capacity;
 
     private String make;
-    private Date createdDate;
-    private Date updatedDate;
+    private Date created_date;
+    private Date updated_date;
+//    private List<Bus> listBus;
 
+    //    public void setAllBus(List<Bus> listBus){
+//        this.listBus = listBus;
+//    }
+//
+//    public List<Bus> getAllBus(){
+//        return listBus;
+//    }
     public String getId() {
         return id;
     }
@@ -35,11 +43,11 @@ public class Bus {
     }
 
     public String getAgencyId() {
-        return agencyId;
+        return agency_id;
     }
 
     public void setAgencyId(String agencyId) {
-        this.agencyId = agencyId;
+        this.agency_id = agency_id;
     }
 
     public Integer getCapacity() {
@@ -59,18 +67,18 @@ public class Bus {
     }
 
     public Date getCreatedDate() {
-        return createdDate;
+        return created_date;
     }
 
     public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+        this.created_date = createdDate;
     }
 
     public Date getUpdatedDate() {
-        return updatedDate;
+        return updated_date;
     }
 
     public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+        this.updated_date = updatedDate;
     }
 }
