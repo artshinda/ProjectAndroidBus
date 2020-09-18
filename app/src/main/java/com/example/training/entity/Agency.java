@@ -16,6 +16,7 @@ public class Agency {
     private String name;
     private String owner;
     private String user_id;
+    @SerializedName("createdDate")
     private Long created_date;
     private Long updated_date;
     public String getId() {

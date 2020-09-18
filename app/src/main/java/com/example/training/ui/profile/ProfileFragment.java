@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,11 @@ import com.example.training.service.Profile;
 import com.example.training.service.UtilsApi;
 import com.example.training.util.SessionManager;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,12 +43,11 @@ public class ProfileFragment extends Fragment {
     static Context mContext;
     SessionManager session;
 //    private ProfileViewModel profileViewModel;
-EditText editFirstName;
-    EditText editLastName;
-    EditText editMobileNumber;
-    EditText editEmail;
+    EditText editFirstName,editLastName, editMobileNumber, editEmail;
+    TextView labelJoin,labelUsername;
     Button logOut;
     ProgressDialog loading;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mContext=container.getContext();
@@ -57,6 +62,8 @@ EditText editFirstName;
         editLastName       = root.findViewById(R.id.editLastName);
         editMobileNumber   = root.findViewById(R.id.editMobileNumber);
         editEmail          = root.findViewById(R.id.editEmail);
+        labelJoin          = root.findViewById(R.id.labelJoin);
+        labelUsername      = root.findViewById(R.id.labelUsername);
         logOut          = root.findViewById(R.id.btnLogOut);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +76,6 @@ EditText editFirstName;
                 Intent agency=new Intent(ProfileFragment.mContext, LoginActivity.class);
                 Toast.makeText(mContext,"Anda Berhasil LogOut", Toast.LENGTH_SHORT).show();
                 startActivity(agency);
-
             }
         });
         getUser();
@@ -93,6 +99,18 @@ EditText editFirstName;
                     editLastName.setText(agResponse.body().getLastName());
                     editMobileNumber.setText(agResponse.body().getMobileNumber());
                     editEmail.setText(agResponse.body().getEmail());
+//                    String labelJoin = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+
+
+                    Timestamp ts=new Timestamp(agResponse.body().getCreated_date());
+                    Date date=new Date(ts.getTime());
+
+                    String pattern = "dd MMMM yyyy";
+                    SimpleDateFormat simpleDateFormat =
+                            new SimpleDateFormat(pattern);
+
+                    labelJoin.setText(simpleDateFormat.format(date));
+                    labelUsername.setText(agResponse.body().getFirstName()+" "+agResponse.body().getLastName());
                 } else {
                     Toast.makeText(mContext, "Gagal mengambil data detail", Toast.LENGTH_SHORT).show();
                 }

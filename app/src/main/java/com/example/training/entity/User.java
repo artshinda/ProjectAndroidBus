@@ -1,7 +1,10 @@
 package com.example.training.entity;
 
-import com.google.gson.annotations.Expose;
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
 
 public class User {
     private String email;
@@ -11,6 +14,16 @@ public class User {
     private String mobileNumber;
     private String firstName;
     private String lastName;
+    @SerializedName("createdDate")
+    private Long created_date;
+
+    public Long getCreated_date() {
+        return created_date;
+    }
+
+    public void setCreated_date(Long created_date) {
+        this.created_date = created_date;
+    }
 
     public String getEmail() {
         return email;

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,10 @@ import com.example.training.service.UtilsApi;
 import com.example.training.service.getAgency;
 import com.example.training.util.SessionManager;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,11 +36,14 @@ import retrofit2.Response;
 public class AgencyFragment extends Fragment {
 
     getAgency mApiService;
+    Profile mApiProfileService;
     static Context mContext;
     SessionManager session;
     //    private ProfileViewModel profileViewModel;
-    EditText editAgencyName;
+    EditText editAgencyName,  editFirstName, editLastName;
     EditText editAgencyDetail;
+    TextView labelJoin,labelUsername;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mContext=container.getContext();
@@ -46,10 +54,14 @@ public class AgencyFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_agency, container, false);
         View contact = inflater.inflate(R.layout.fragment_agency, container,false);
 
-        editAgencyName      = root.findViewById(R.id.editAgencyName);
-        editAgencyDetail       = root.findViewById(R.id.editAgencyDetail);
-        getAgency();
+        editAgencyName     = root.findViewById(R.id.editAgencyName);
+        editAgencyDetail   = root.findViewById(R.id.editAgencyDetail);
+        editFirstName      = root.findViewById(R.id.editFirstName);
+        editLastName       = root.findViewById(R.id.editLastName);
+        labelJoin          = root.findViewById(R.id.labelJoin);
+        labelUsername      = root.findViewById(R.id.labelUsername);
 
+        getAgency();
         return root;
     }
 
@@ -59,6 +71,7 @@ public class AgencyFragment extends Fragment {
 //        String userId="824537d7-a1dd-4a4d-9d99-a3ed0a9103dd";
 
 //        editFirstName.setText("lololo");
+
         mApiService.getAgency(agencyId).enqueue(new Callback<Agency>() {
             @Override
             public void onResponse(Call<Agency> agCall, Response<Agency> agResponse) {
@@ -66,8 +79,14 @@ public class AgencyFragment extends Fragment {
                     Log.d("firstName",agResponse.body().getName());
                     editAgencyName.setText(agResponse.body().getName());
                     editAgencyDetail.setText(agResponse.body().getDetails());
-//                    editMobileNumber.setText(agResponse.body().getMobileNumber());
-//                    editEmail.setText(agResponse.body().getEmail());
+                    labelUsername.setText(agResponse.body().getName());
+
+                    Timestamp ts=new Timestamp(agResponse.body().getCreated_date());
+                    Date date=new Date(ts.getTime());
+                    String pattern = "dd MMMM yyyy";
+                    SimpleDateFormat simpleDateFormat =
+                            new SimpleDateFormat(pattern);
+                    labelJoin.setText(simpleDateFormat.format(date));
                 } else {
                     Toast.makeText(mContext, "Gagal mengambil data detail", Toast.LENGTH_SHORT).show();
                 }
@@ -79,5 +98,4 @@ public class AgencyFragment extends Fragment {
             }
         });
     }
-
 }

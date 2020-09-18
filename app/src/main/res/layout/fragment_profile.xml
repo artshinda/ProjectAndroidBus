@@ -24,8 +24,8 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.686"
-        app:layout_constraintStart_toStartOf="@+id/imgLogout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgLogout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.187" />
 
@@ -80,8 +80,6 @@
         android:id="@+id/labelJoin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="214dp"
         android:background="#f9fcfb"
         android:fontFamily="@font/actor"
@@ -91,8 +89,8 @@
         android:textColorHint="#000000"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="@+id/imgCalendar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imgCalendar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
