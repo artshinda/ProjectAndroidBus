@@ -8,23 +8,16 @@ public class Bus {
 
     @SerializedName("id")
     private String id;
+    @SerializedName("code")
     private String code;
 
-    private String agency_id;
+    private String agencyId;
     private Integer capacity;
 
     private String make;
-    private Date created_date;
-    private Date updated_date;
-//    private List<Bus> listBus;
+    private Date createdDate;
+    private Date updatedDate;
 
-//    public void setAllBus(List<Bus> listBus){
-//        this.listBus = listBus;
-//    }
-//
-//    public List<Bus> getAllBus(){
-//        return listBus;
-//    }
     public String getId() {
         return id;
     }
@@ -42,11 +35,11 @@ public class Bus {
     }
 
     public String getAgencyId() {
-        return agency_id;
+        return agencyId;
     }
 
     public void setAgencyId(String agencyId) {
-        this.agency_id = agency_id;
+        this.agencyId = agencyId;
     }
 
     public Integer getCapacity() {
@@ -66,18 +59,18 @@ public class Bus {
     }
 
     public Date getCreatedDate() {
-        return created_date;
+        return createdDate;
     }
 
     public void setCreatedDate(Date createdDate) {
-        this.created_date = createdDate;
+        this.createdDate = createdDate;
     }
 
     public Date getUpdatedDate() {
-        return updated_date;
+        return updatedDate;
     }
 
     public void setUpdatedDate(Date updatedDate) {
-        this.updated_date = updatedDate;
+        this.updatedDate = updatedDate;
     }
 }

@@ -1,6 +1,10 @@
 package com.example.training.entity;
 
+import android.util.Log;
+
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
 
 public class Agency {
 
