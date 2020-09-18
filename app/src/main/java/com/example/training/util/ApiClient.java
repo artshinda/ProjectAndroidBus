@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     public static Retrofit getClient(){
-     final String BASE_URL = "http://192.168.43.37:8080/api/";
+     final String BASE_URL = "http://192.168.137.1:8080/api/";
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);

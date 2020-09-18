@@ -63,7 +63,7 @@ EditText editFirstName;
 
                 Intent agency=new Intent(ProfileFragment.mContext, LoginActivity.class);
                 startActivity(agency);
-
+                Toast.makeText(mContext,"Anda Berhasil LogOut", Toast.LENGTH_SHORT).show();
 
             }
         });

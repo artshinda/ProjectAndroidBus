@@ -7,8 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface getAgency {
-
-    @GET("getAgencyApi")
+    @GET("getAgency")
     Call<Agency> getAgency(@Query("id") String agencyId);
-
 }
