@@ -135,7 +135,7 @@
                     tools:layout_editor_absoluteY="356dp" />
 
                 <EditText
-                    android:id="@+id/editFirstName"
+                    android:id="@+id/editAgencyName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
@@ -170,7 +170,7 @@
                     tools:layout_editor_absoluteY="356dp" />
 
                 <EditText
-                    android:id="@+id/editLastName"
+                    android:id="@+id/editAgencyDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"

@@ -17,4 +17,10 @@ public class UtilsApi {
     public static RegisterService getRegisterService(){
         return ApiClient.getClient().create(RegisterService.class);
     }
+
+    public static BusService getBusService(){
+        return ApiClient.getClient().create(BusService.class);
+    }
+
 }
+

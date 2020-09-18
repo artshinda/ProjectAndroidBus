@@ -51,7 +51,7 @@ public class SessionManager {
         String agencyId = prefs.getString("userId", "");
         return agencyId;
     }
-    public void removeToken() {
-        prefs.edit().remove("token").apply();
+    public void deleteAllSharedPrefs(){
+        prefs.edit().clear().commit();
     }
 }
