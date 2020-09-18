@@ -1,5 +1,6 @@
 package com.example.training.ui.profile;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ EditText editFirstName;
     EditText editMobileNumber;
     EditText editEmail;
     Button logOut;
+    ProgressDialog loading;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mContext=container.getContext();
@@ -59,11 +61,14 @@ EditText editFirstName;
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loading = ProgressDialog.show(mContext, null, "Harap Menunggu",
+                        true, false);
                 session.deleteAllSharedPrefs();
 
+                loading.dismiss();
                 Intent agency=new Intent(ProfileFragment.mContext, LoginActivity.class);
-                startActivity(agency);
                 Toast.makeText(mContext,"Anda Berhasil LogOut", Toast.LENGTH_SHORT).show();
+                startActivity(agency);
 
             }
         });
@@ -71,6 +76,7 @@ EditText editFirstName;
 
         return root;
     }
+
 
     private void getUser(){
 //harusnya yg ini

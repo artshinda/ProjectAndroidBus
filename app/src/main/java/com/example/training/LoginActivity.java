@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity{
     public static String passwordShared;
     public static String value;
     public static final String resultText = "resultText";
-
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +112,13 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+            return;
+        }
+
 
     @Override
     protected void onStart() {
