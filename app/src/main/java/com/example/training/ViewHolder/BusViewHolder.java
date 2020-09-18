@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.training.R;
 
 public class BusViewHolder extends RecyclerView.ViewHolder {
-    public TextView code, make;
+    public TextView code, make,capacity;
     public BusViewHolder(@NonNull View itemView){
         super(itemView);
         code=(TextView) itemView.findViewById(R.id.code);
-        make=(TextView) itemView.findViewById(R.id.capacity);
+        make=(TextView) itemView.findViewById(R.id.make);
+        capacity=(TextView) itemView.findViewById(R.id.capacity);
     }
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
 
     <TextView
@@ -14,10 +14,20 @@
         android:text="Code" />
 
     <TextView
+        android:id="@+id/make"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/capacity"
+        android:layout_marginTop="42dp"
+        android:text="Make" />
+
+    <TextView
         android:id="@+id/capacity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/code"
 
+        android:layout_marginTop="47dp"
         android:text="Capacity" />
 </RelativeLayout>
