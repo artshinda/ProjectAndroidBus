@@ -4,10 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editFirstName, editLastName, editEmail, editPassword,
              editRepeatPassword, editAgencyName, editAgencyDetail, editContactNumber;
     Button btnRegister;
+    CheckBox checkShowPassword;
     RegisterService mRegisterAPIService;
 
     @Override
@@ -41,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         editLastName        = findViewById(R.id.editLastName);
         editEmail           = findViewById(R.id.editEmail);
         editPassword        = findViewById(R.id.editPassword);
+        checkShowPassword   = findViewById(R.id.checkShowPassword);
         editRepeatPassword  = findViewById(R.id.editAgencyName);
         editAgencyName      = findViewById(R.id.editAgencyName);
         editAgencyDetail    = findViewById(R.id.editAgencyDetail);
@@ -48,10 +54,62 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister         = findViewById(R.id.btnRegister);
         textLogin           = findViewById(R.id.textLogin);
 
+        checkShowPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                // TODO Auto-generated method stub
+                if (!isChecked) {
+                    editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                doRegister();
+                final String firstNameVal=editFirstName.getText().toString();
+                final String lastNameVal=editLastName.getText().toString();
+                final String emailVal=editEmail.getText().toString();
+                final String passwordVal=editPassword.getText().toString();
+                final String agencyNameVal=editAgencyName.getText().toString();
+                final String agencyDetailVal=editAgencyDetail.getText().toString();
+                final String contactNumberVal=editContactNumber.getText().toString();
+
+                if(firstNameVal.length()==0){
+                    editFirstName.requestFocus();
+                    editFirstName.setError("First Name Cannot Be Empty");
+                } else if(!firstNameVal.matches("[a-zA-Z ]+")){
+                    editFirstName.requestFocus();
+                    editFirstName.setError("Enter Only Alphabetical Character");
+                } else if(lastNameVal.length()==0) {
+                    editLastName.requestFocus();
+                    editLastName.setError("Last Name Cannot Be Empty");
+                } else if(!lastNameVal.matches("[a-zA-Z ]+")){
+                    editLastName.requestFocus();
+                    editLastName.setError("Enter Only Alphabetical Character");
+                } else if(emailVal.length()==0) {
+                    editEmail.requestFocus();
+                    editEmail.setError("Email Cannot Be Empty");
+                } else if(!emailVal.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")){
+                    editEmail.requestFocus();
+                    editEmail.setError("Enter The Right Email Address");
+                } else if(passwordVal.length()==0) {
+                    editPassword.requestFocus();
+                    editPassword.setError("Password Cannot Be Empty");
+                } else if(agencyNameVal.length()==0) {
+                    editAgencyName.requestFocus();
+                    editAgencyName.setError("Agency Name Cannot Be Empty");
+                } else if(!agencyNameVal.matches("[a-zA-Z ]+")){
+                    editAgencyName.requestFocus();
+                    editAgencyName.setError("Enter Only Alphabetical Character");
+                } else if(agencyDetailVal.length()==0) {
+                    editAgencyDetail.requestFocus();
+                    editAgencyDetail.setError("Agency Detail Cannot Be Empty");
+                } else {
+                    doRegister();
+                }
                 UIUtil.hideKeyboard(RegisterActivity.this);
             }
         });
@@ -91,6 +149,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Register register = new Register();
         register.setFirstName(editFirstName.getText().toString());
+
         register.setLastName(editLastName.getText().toString());
         register.setEmail(editEmail.getText().toString());
         register.setPassword(editPassword.getText().toString());

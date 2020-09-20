@@ -14,7 +14,7 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="233dp"
-        android:layout_height="337dp"
+        android:layout_height="370dp"
         android:background="@drawable/white_rectangle"
         android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,7 +78,8 @@
                 android:layout_marginLeft="38dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
-                android:text="Password" />
+                android:text="Password"
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/editPassword"
@@ -92,16 +93,27 @@
                 android:inputType="textPassword"
                 android:textSize="12dp" />
 
+            <CheckBox
+                android:id="@+id/checkShowPassword"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:text="Show Password"
+                android:textSize="12sp" />
+
             <Button
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/button_blue_rectangle"
+                android:textColor="#ffffff"
                 android:text="LOGIN"
-                android:textColor="#ffffff" />
+                />
         </LinearLayout>
     </FrameLayout>
 

@@ -13,9 +13,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.widget.CheckBox;
 
 import com.example.training.service.AuthService;
 import com.example.training.service.UtilsApi;
@@ -41,6 +47,7 @@ public class LoginActivity extends AppCompatActivity{
     SessionManager sessionManager;
     Context mContext;
     ProgressDialog loading;
+    CheckBox checkShowPassword;
 
     public static String email;
     public static String password;
@@ -54,34 +61,53 @@ public class LoginActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLogin       = findViewById(R.id.btnRegister);
-        editEmail      = findViewById(R.id.editEmail);
-        editPassword   = findViewById(R.id.editPassword);
-        textRegisLink  = findViewById(R.id.textRegisLink);
-        textRegis      = findViewById(R.id.textRegis);
-        sessionManager = new SessionManager(this);
-        mContext       = this;
+        btnLogin          = findViewById(R.id.btnRegister);
+        editEmail         = findViewById(R.id.editEmail);
+        editPassword      = findViewById(R.id.editPassword);
+        textRegisLink     = findViewById(R.id.textRegisLink);
+        textRegis         = findViewById(R.id.textRegis);
+        checkShowPassword = findViewById(R.id.checkShowPassword);
+        sessionManager    = new SessionManager(this);
+        mContext          = this;
 
         //Menyimpan Value editEmail
         sharedPreferences = getSharedPreferences(emailShared,Context.MODE_PRIVATE);
         sharedPreferences = getSharedPreferences(passwordShared,Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        String email = editEmail.getText().toString().trim();
+        checkShowPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                // TODO Auto-generated method stub
+                if (!isChecked) {
+                    editPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    editPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
 
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         //Button click yang mengarah ke halaman registrasi
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loading = ProgressDialog.show(mContext, null, "Harap Menunggu",
-                        true, false);
-//                if (android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                final String emailVal=editEmail.getText().toString();
+                final String passwordVal=editPassword.getText().toString();
+
+                if(editEmail.length()==0){
+                    editEmail.requestFocus();
+                    editEmail.setError("Email Cannot Be Empty");
+                } else if(!emailVal.matches("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+")){
+                    editEmail.requestFocus();
+                    editEmail.setError("Enter The Right Email Address");
+                } else if(passwordVal.length()==0) {
+                    editPassword.requestFocus();
+                    editPassword.setError("Password Cannot Be Empty");
+                } else {
+                    loading = ProgressDialog.show(mContext, null, "Harap Menunggu",
+                            true, false);
                     doLogin();
-//                }
-//                else{
-//                    Toast.makeText(mContext,"invalid email", Toast.LENGTH_SHORT).show();
-//                }
+                }
                 UIUtil.hideKeyboard(LoginActivity.this);
             }
         });

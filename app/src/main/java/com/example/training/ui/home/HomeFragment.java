@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,9 @@ import com.example.training.entity.Bus;
 import com.example.training.service.BusService;
 import com.example.training.service.UtilsApi;
 import com.example.training.util.SessionManager;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageClickListener;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +41,14 @@ public class HomeFragment extends Fragment {
     List<Bus> buses=new ArrayList<>();
 //    private HomeViewModel homeViewModel;
 
+    private int[] mImages = new int[]{
+      R.drawable.bus_caraousel, R.drawable.bus_harapanjaya, R.drawable.bus_kramatjati
+    };
+
+    private String[] mImagesTitle = new String[]{
+        "Bus Sinar Jaya", "Bus Harapan Jaya", "Bus Kramat Jati"
+    };
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
@@ -44,19 +56,36 @@ public class HomeFragment extends Fragment {
 //                ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.activity_bus, container, false);
 //        final TextView textView = root.findViewById(R.id.text_home);
+        CarouselView carouselView = root.findViewById(R.id.carouselView);
+        carouselView.setPageCount(mImages.length);
+        carouselView.setImageListener(new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(mImages[position]);
+            }
+        });
+        carouselView.setImageClickListener(new ImageClickListener() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(mContext, mImagesTitle[position], Toast.LENGTH_SHORT).show();
+            }
+        });
+
         recyclerView=root.findViewById(R.id.busRecycleView);
         mContext = container.getContext();
         session=new SessionManager(mContext);
+
         mApiService = UtilsApi.getBusService();
-//        dbAdapter=new DBAdapter(this);
         getAllBus();
+        return root;
+
+//        dbAdapter=new DBAdapter(this);
 //        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
 //            public void onChanged(@Nullable String s) {
 //                textView.setText(s);
 //            }
 //        });
-        return root;
     }
 
     private void getAllBus(){
