@@ -162,7 +162,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.521" />
 
-            <EditText
+            <TextView
                 android:id="@+id/editTextTextMultiLine"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
@@ -173,7 +173,7 @@
                 android:layout_toEndOf="@+id/imageView"
                 android:layout_toRightOf="@+id/imageView"
                 android:enabled="false"
-                android:gravity="start|top"
+                android:layout_gravity="center_vertical|end"
                 android:inputType="textMultiLine"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text "
                 android:textColor="#000000"
