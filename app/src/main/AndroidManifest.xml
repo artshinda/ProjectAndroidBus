@@ -13,11 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.DetailProfile.DetailActivity"></activity>
+        <activity
+            android:theme="@style/AppThemeDark"
+            android:screenOrientation="portrait"
+            android:name=".ui.DetailProfile.DetailActivity">
+
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:screenOrientation="portrait"></activity> <!-- <activity android:name="com.example.myapplication.HomeActivity" /> -->
+            android:screenOrientation="portrait">
+
+        </activity>
+        <!-- <activity android:name="com.example.myapplication.HomeActivity" /> -->
         <activity
             android:name=".SplashScreen"
             android:screenOrientation="portrait">

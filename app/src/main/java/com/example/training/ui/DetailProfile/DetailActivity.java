@@ -1,15 +1,20 @@
 package com.example.training.ui.DetailProfile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.training.HomeActivity;
 import com.example.training.R;
 import com.example.training.entity.Bus;
 import com.example.training.ui.home.HomeFragment;
@@ -43,9 +48,33 @@ public class DetailActivity extends AppCompatActivity {
         btnKembali.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent kembali = new Intent(DetailActivity.this, HomeFragment.class);
+//                FragmentManager mFragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.frame,new Fragment91()).addToBackStack(null).commit();
+//                getActionBar().setHomeButtonEnabled(true);
+//                getActionBar().setDisplayHomeAsUpEnabled(true);
+//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                getSupportActionBar().setTitle("Dway Bus");
+//                getSupportActionBar().setSubtitle("Detail Bus");
+
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                Intent kembali = new Intent(DetailActivity.this, HomeActivity.class);
                 startActivity(kembali);
+                Log.d("ssdsd", "dssd");
             }
         });
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                // app icon in action bar clicked; goto parent activity.
+//                this.finish();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 }
