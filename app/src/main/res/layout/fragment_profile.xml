@@ -13,86 +13,6 @@
         android:layout_height="150dp"
         android:background="@drawable/bg2_profile" />
 
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="53dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="39dp"
-        android:background="@drawable/empty_button"
-        android:text="Log Out"
-        android:textColor="#000000"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imgLogout"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.187" />
-
-    <ImageView
-        android:id="@+id/imgLogout"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginBottom="24dp"
-        android:background="@mipmap/ic_logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.242" />
-
-    <ImageView
-        android:id="@+id/imgCalendar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginBottom="24dp"
-        android:background="@mipmap/ic_calendar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.309" />
-
-    <TextView
-        android:id="@+id/labelUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
-        android:background="#f9fcfb"
-        android:fontFamily="@font/actor"
-        android:hint="First Name"
-        android:text="Username"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/labelJoin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="214dp"
-        android:background="#f9fcfb"
-        android:fontFamily="@font/actor"
-        android:hint="First Name"
-        android:text="Join September 2020"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imgCalendar"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -115,11 +35,98 @@
                 tools:layout_editor_absoluteX="-51dp"
                 tools:layout_editor_absoluteY="-21dp" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/labelUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="28dp"
+                    android:background="#f9fcfb"
+                    android:fontFamily="@font/actor"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.067"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/imgCalendar2"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/labelUsername"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@mipmap/ic_calendar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.026"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/labelUsername"
+                    app:layout_constraintVertical_bias="0.882" />
+
+                <TextView
+                    android:id="@+id/labelJoin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/labelUsername"
+                    android:layout_marginTop="13dp"
+                    android:layout_toRightOf="@+id/imgCalendar2"
+                    android:background="#f9fcfb"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.959" />
+
+                <ImageView
+                    android:id="@+id/imgLogout"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="230dp"
+                    android:layout_marginTop="-7dp"
+                    android:background="@mipmap/ic_logout"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_bias="0.815"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.242" />
+
+                <Button
+                    android:id="@+id/btnLogOut"
+                    android:layout_width="53dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="-7dp"
+                    android:layout_toEndOf="@+id/imgLogout"
+                    android:layout_toRightOf="@+id/imgLogout"
+                    android:background="@drawable/empty_button"
+                    android:text="Log Out"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imgLogout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.187" />
+
+            </RelativeLayout>
+
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_gravity="left"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="5dp"
                 app:tabIndicatorAnimationDuration="500"
                 app:tabIndicatorColor="#5C106A"
                 app:tabIndicatorHeight="4dp">

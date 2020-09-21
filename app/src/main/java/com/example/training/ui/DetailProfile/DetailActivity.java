@@ -23,6 +23,7 @@ import com.example.training.util.SessionManager;
 public class DetailActivity extends AppCompatActivity {
     TextView textView1,textView2,textView3;
     Button btnKembali;
+    String titleAction;
 //    static Context mContext;
 //    SessionManager session;
 //    ViewGroup container;
@@ -38,32 +39,26 @@ public class DetailActivity extends AppCompatActivity {
         textView1  = findViewById(R.id.code);
         textView2  = findViewById(R.id.make);
         textView3  = findViewById(R.id.capacity);
-        btnKembali = findViewById(R.id.btnKembali);
+//        btnKembali = findViewById(R.id.btnKembali);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Dway Bus");
+        getSupportActionBar().setSubtitle("Detail Bus");
+
 
         Bus user = (Bus) getIntent().getSerializableExtra("busDetail");
         textView1.setText(user.getCode());
         textView2.setText(user.getMake());
         textView3.setText(String.valueOf(user.getCapacity()));
 
-        btnKembali.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                FragmentManager mFragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.frame,new Fragment91()).addToBackStack(null).commit();
-//                getActionBar().setHomeButtonEnabled(true);
-//                getActionBar().setDisplayHomeAsUpEnabled(true);
-//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//                getSupportActionBar().setTitle("Dway Bus");
-//                getSupportActionBar().setSubtitle("Detail Bus");
-
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-                Intent kembali = new Intent(DetailActivity.this, HomeActivity.class);
-                startActivity(kembali);
-                Log.d("ssdsd", "dssd");
-            }
-        });
+//        btnKembali.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent kembali = new Intent(DetailActivity.this, HomeActivity.class);
+//                startActivity(kembali);
+//                Log.d("ssdsd", "dssd");
+//            }
+//        });
     }
 
 //    @Override

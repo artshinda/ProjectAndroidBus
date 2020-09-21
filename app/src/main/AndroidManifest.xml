@@ -16,6 +16,7 @@
         <activity
             android:theme="@style/AppThemeDark"
             android:screenOrientation="portrait"
+            android:parentActivityName=".HomeActivity"
             android:name=".ui.DetailProfile.DetailActivity">
 
         </activity>

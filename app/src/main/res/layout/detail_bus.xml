@@ -164,7 +164,7 @@
             <EditText
                 android:id="@+id/editTextTextMultiLine"
                 android:layout_width="match_parent"
-                android:layout_height="480dp"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/imageView"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="5dp"
@@ -177,16 +177,16 @@
                 android:textColor="#000000"
                 android:textSize="10sp" />
 
-            <Button
-                android:id="@+id/btnKembali"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/editTextTextMultiLine"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="0dp"
-                android:background="@drawable/button_blue_rectangle"
-                android:textColor="#ffffff"
-                android:text="Kembali" />
+<!--            <Button-->
+<!--                android:id="@+id/btnKembali"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/editTextTextMultiLine"-->
+<!--                android:layout_marginLeft="30dp"-->
+<!--                android:layout_marginTop="0dp"-->
+<!--                android:background="@drawable/button_blue_rectangle"-->
+<!--                android:textColor="#ffffff"-->
+<!--                android:text="Kembali" />-->
 
 
         </RelativeLayout>
