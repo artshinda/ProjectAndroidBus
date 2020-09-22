@@ -1,7 +1,9 @@
 package com.example.training.ui.profile;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -69,19 +71,56 @@ public class ProfileFragment extends Fragment {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loading = ProgressDialog.show(mContext, null, "Harap Menunggu",
-                        true, false);
-                session.deleteAllSharedPrefs();
-
-                loading.dismiss();
-                Intent agency=new Intent(ProfileFragment.mContext, LoginActivity.class);
-                Toast.makeText(mContext,"Anda Berhasil LogOut", Toast.LENGTH_SHORT).show();
-                startActivity(agency);
+                logOut.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        logout();
+                    }
+                });
             }
         });
         getUser();
 
         return root;
+    }
+
+    public void logout(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+
+        builder.setIcon(R.mipmap.ic_report); // Icon for your alertbox
+        builder.setTitle("Permission");
+        builder.setMessage("You sure, that you want to logout?");
+
+        builder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        loading = ProgressDialog.show(mContext,
+                                null, "Harap Menunggu",
+                                true, false);
+                        session.deleteAllSharedPrefs();
+
+                        Intent i = new Intent(ProfileFragment.mContext,
+                                LoginActivity.class);
+                        Toast.makeText(mContext,"Anda Berhasil LogOut", Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                    }
+                });
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder.create();
+        alert11.show();
+
+//                session.deleteAllSharedPrefs();
+//
+//                loading.dismiss();
+//                Intent agency=new Intent(ProfileFragment.mContext, LoginActivity.class);
+//                Toast.makeText(mContext,"Anda Berhasil LogOut", Toast.LENGTH_SHORT).show();
+//                startActivity(agency);
     }
 
 
